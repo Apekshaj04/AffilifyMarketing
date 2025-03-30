@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "framer-motion": "^12.5.0",
+    "web3": "^4.16.0"
+  }
+}
