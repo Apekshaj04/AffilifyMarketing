@@ -1,0 +1,18 @@
+/* Global styles should go here */
+:root {
+  --primary-color: #1e1e2f;
+  --accent-color: #ff9800;
+  --text-color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: var(--text-color);
+}

@@ -1,0 +1,149 @@
+.header{
+    color: #28a745;
+    font-family: cursive;
+    font-size: xx-large;
+}
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('/background.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;  
+  }
+  
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .formBox {
+    position: relative;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* ✅ Prefix global selectors with a local class */
+  .formBox h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .toggleButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .toggleButtons button {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .activeButton {
+    background: #007bff;
+    color: white;
+  }
+  
+  .walletButton {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .inputField {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* ✅ Fixed: Scoped the button properly */
+  .submitButton {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* ✅ Fix: Scoped toggleText properly */
+  .toggleText {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .toggleText span {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .formBox {
+      width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .toggleButtons button {
+      padding: 8px;
+    }
+  
+    .inputField,
+    .walletButton,
+    .submitButton {
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .formBox {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    /* ✅ Fix: Scoped h2 properly */
+    .formBox h2 {
+      font-size: 1.2rem;
+    }
+  
+    .toggleButtons {
+      flex-direction: column;
+    }
+  
+    .toggleButtons button {
+      margin: 3px 0;
+    }
+  
+    .inputField,
+    .walletButton,
+    .submitButton {
+      font-size: 0.9rem;
+      padding: 6px;
+    }
+  
+    .toggleText {
+      font-size: 0.8rem;
+    }
+  }
+  

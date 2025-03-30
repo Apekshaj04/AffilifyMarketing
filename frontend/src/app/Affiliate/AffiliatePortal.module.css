@@ -1,0 +1,364 @@
+/* Main Container */
+.affiliatePortal {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #333;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background: #1e1e2f;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.navLinks li {
+  display: inline-block;
+}
+
+.navLinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: #ff9800;
+}
+
+.signOutBtn {
+  background: #ff4d4d;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.signOutBtn:hover {
+  background: #d43838;
+}
+
+/* Hero Section */
+.heroSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 5%;
+  background: linear-gradient(rgba(30, 30, 47, 0.8), rgba(30, 30, 47, 0.9)), url('https://source.unsplash.com/1600x900/?business,marketing') no-repeat center center/cover;
+  color: white;
+  min-height: 70vh;
+  gap: 40px;
+}
+
+.heroContent {
+  flex: 1;
+  max-width: 600px;
+}
+
+.heroContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.heroContent h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ff9800;
+}
+
+.heroContent p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  background: #ff9800;
+  padding: 12px 25px;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.ctaButton:hover {
+  background: #e68900;
+  transform: translateY(-2px);
+}
+
+.heroImage {
+  flex: 1;
+  max-width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.heroImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Alternating Sections */
+.alternatingSection,
+.alternatingSectionReverse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 5%;
+  background: white;
+  gap: 40px;
+}
+
+.alternatingSectionReverse {
+  background: #f8f9fa;
+  flex-direction: row-reverse;
+}
+
+.imageWrapper {
+  flex: 1;
+  max-width: 500px;
+}
+
+.imageWrapper img {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.textWrapper {
+  flex: 1;
+  max-width: 500px;
+}
+
+.textWrapper h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #1e1e2f;
+}
+
+.textWrapper p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+/* Success Stories Section */
+.successStories {
+  text-align: center;
+  padding: 20px;
+}
+
+.storiesContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds space between the two boxes */
+  flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+.story {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 300px; /* Adjust as needed */
+}
+
+.story img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+  background: #1e1e2f;
+  color: white;
+  text-align: center;
+  padding: 25px 5%;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .heroContent {
+    margin-bottom: 40px;
+  }
+  
+  .alternatingSection,
+  .alternatingSectionReverse {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .textWrapper {
+    margin-top: 20px;
+  }
+  
+  .alternatingSectionReverse .textWrapper {
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .successGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .logo {
+    margin-bottom: 15px;
+  }
+  
+  .navLinks {
+    margin: 15px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navLinks li {
+    margin: 5px 10px;
+  }
+  
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+  
+  .heroContent h2 {
+    font-size: 1.3rem;
+  }
+  
+  .heroContent p {
+    font-size: 1rem;
+  }
+  
+  .imageWrapper,
+  .textWrapper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .navLinks {
+    gap: 15px;
+  }
+  
+  .heroSection {
+    padding: 60px 5% 40px;
+  }
+  
+  .ctaButton {
+    padding: 10px 20px;
+  }
+  
+  .alternatingSection,
+  .alternatingSectionReverse {
+    padding: 50px 5%;
+  }
+  
+  .textWrapper h3 {
+    font-size: 1.5rem;
+  }
+  
+  .textWrapper p {
+    font-size: 1rem;
+  }
+  
+  .successStories h2 {
+    font-size: 1.8rem;
+  }
+}
+
+
+.notificationPopup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff9800;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  z-index: 1000;
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.popupContent p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.popupBtn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.popupBtn:hover {
+  background: #0056b3;
+}

@@ -1,0 +1,382 @@
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: #1e1e2f;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .navLinks {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navLinks li {
+    display: inline-block;
+  }
+  
+  .navLinks a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s ease;
+  }
+  
+  .navLinks a:hover {
+    color: #ff9800;
+  }
+  
+  .signOutBtn {
+    background: #ff4d4d;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .signOutBtn:hover {
+    background: #d43838;
+  }
+   /* Page Container */
+   .pageContainer {
+    flex: 1;
+    padding: 40px 5%;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Details Card */
+  .detailsCard {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 20px;
+  }
+  
+  .cardHeader h1 {
+    font-size: 1.8rem;
+    color: #1e1e2f;
+    margin: 0;
+  }
+  
+  /* Profile Information */
+  .profileSection {
+    display: flex;
+    margin-bottom: 30px;
+    align-items: center;
+  }
+  
+  .avatarSection {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    background: #1e1e2f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .userLevel {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .levelBadge {
+    background: #ff9800;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  
+  .basicInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .basicInfo h2 {
+    font-size: 1.6rem;
+    margin: 0 0 5px 0;
+    color: #1e1e2f;
+  }
+  
+  .joinDate {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 0 5px 0;
+  }
+  
+  .earnings {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #28a745;
+  }
+  
+  /* Info Grid */
+  .infoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .infoItem {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .infoItem h3 {
+    font-size: 1.2rem;
+    color: #1e1e2f;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .infoItem p {
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  
+  /* Options Section */
+  .optionsSection {
+    margin-top: 30px;
+  }
+  
+  .optionsSection h3 {
+    font-size: 1.2rem;
+    color: #1e1e2f;
+    margin-bottom: 15px;
+  }
+  
+  .optionsButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .optionButton {
+    background: #f1f2f6;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .optionButton:hover {
+    background: #e1e2e6;
+  }
+  
+  .dangerButton {
+    background: #fff1f1;
+    color: #ff4d4d;
+  }
+  
+  .dangerButton:hover {
+    background: #ffe1e1;
+  }
+  
+  /* Edit Form */
+  .editForm {
+    margin-top: 20px;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .formGroup input,
+  .formGroup select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
+  
+  .formGroup input:focus,
+  .formGroup select:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+  
+  .formActions {
+    margin-top: 25px;
+    text-align: right;
+  }
+  
+  /* Buttons */
+  .editButton, 
+  .saveButton {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+  }
+  
+  .editButton:hover, 
+  .saveButton:hover {
+    background: #e68900;
+  }
+  
+  .cancelButton {
+    background: #f1f2f6;
+    color: #555;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+  }
+  
+  .cancelButton:hover {
+    background: #e1e2e6;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #1e1e2f;
+    color: white;
+    text-align: center;
+    padding: 25px 5%;
+    font-size: 1rem;
+    margin-top: auto;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .formGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 15px;
+    }
+    
+    .logo {
+      margin-bottom: 15px;
+    }
+    
+    .navLinks {
+      margin: 15px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .navLinks li {
+      margin: 5px 10px;
+    }
+    
+    .infoGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .profileSection {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .avatarSection {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+    
+    .optionsButtons {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .pageContainer {
+      padding: 20px 15px;
+    }
+    
+    .detailsCard {
+      padding: 20px 15px;
+    }
+    
+    .cardHeader {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .cardHeader h1 {
+      margin-bottom: 15px;
+    }
+    
+    .avatar {
+      width: 80px;
+      height: 80px;
+      font-size: 2rem;
+    }
+  }
