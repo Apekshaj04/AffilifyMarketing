@@ -142,6 +142,12 @@ Affilify consists of **two portals**:
 
 - **Recently Affiliated Products** – View latest promotions.
   ![image](https://github.com/user-attachments/assets/1afc103d-cfa9-4ae9-b2b6-e72459bedbc2)
+
+  -**Transaction Details** - Details about transaction along with cid
+  ![image](https://github.com/user-attachments/assets/6867274b-23ea-431f-9a1b-9a5bdead2a04)
+  ![image](https://github.com/user-attachments/assets/186f03ac-f011-4b3b-9f72-7ce8e92808f5)
+
+
   
 - **Details Page** – Deep insights into product performance.
   ![image](https://github.com/user-attachments/assets/fb22314d-92cf-435b-9424-6a254f2691b2)
