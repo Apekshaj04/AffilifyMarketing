@@ -170,7 +170,6 @@ Affilify consists of **two portals**:
 
 ## 🔮 Future Plans
 🚀 **Upcoming Enhancements:**
-- **Rank-Based Algorithm** – Dynamic ranking for better affiliate selection.
 - **Instagram Scraping** – AI-driven influencer insights (with user consent).
 - **AI ChatBot Integration** – Seamless user experience & automated support.
 
