@@ -124,36 +124,50 @@ Affilify consists of **two portals**:
 ### 🏆 Features
 - **Auth.js** – Secure authentication.
   ![image](https://github.com/user-attachments/assets/92691368-9ebd-44bb-b333-0f9957e15c35)
-  ![image](https://github.com/user-attachments/assets/7a695fae-0de5-47b8-835c-9db14d5c8a8f)
 
 
 - **Affiliate Dashboard** – Track earnings and product performance.
-    ![image](https://github.com/user-attachments/assets/9df157e8-85e8-48fc-8ac6-7cb5153de4fd)
+    ![image](https://github.com/user-attachments/assets/5299a587-07a1-43ce-8d8f-9db9378b377c)
+
   
 - **Affiliate Recommendation** – AI-based influencer-product matching.
-    ![image](https://github.com/user-attachments/assets/b53aeac2-81ee-4a30-a85f-ae77cc31101c)  
+    ![image](https://github.com/user-attachments/assets/1afc103d-cfa9-4ae9-b2b6-e72459bedbc2)
+  ![image](https://github.com/user-attachments/assets/294614f3-7419-4aff-82f1-8eb4b83def4c)
+
+
 
 - **Affiliating a Product** – Easy product affiliation for influencers.
-  ![image](https://github.com/user-attachments/assets/92613ef2-2c38-423e-841b-16098db7381f)
+  ![image](https://github.com/user-attachments/assets/06c9f60d-71e2-4563-bd67-669ef515c522)
+
 
 - **Recently Affiliated Products** – View latest promotions.
-  ![image](https://github.com/user-attachments/assets/ef3355b5-9d12-40be-9436-3601084dc25d)
+  ![image](https://github.com/user-attachments/assets/1afc103d-cfa9-4ae9-b2b6-e72459bedbc2)
   
 - **Details Page** – Deep insights into product performance.
-  ![image](https://github.com/user-attachments/assets/2711e100-53c2-4651-a091-db3adc57aa66)
+  ![image](https://github.com/user-attachments/assets/fb22314d-92cf-435b-9424-6a254f2691b2)
+
 
 - **Notification System** – Stay updated with important alerts.
   ![image](https://github.com/user-attachments/assets/f36b129a-451d-4f95-b5a3-43bed8045d9d)
 
   
 - **Company Dashboard** – Manage products and partnerships.
-    ![image](https://github.com/user-attachments/assets/4cbcbf27-ff61-4c7d-8e46-a43202802d70)
+    ![image](https://github.com/user-attachments/assets/261d1998-7b88-4e02-ae51-0e7757ab77e9)
+
 
 - **Company Add Product** – Add new products for affiliate marketing.
-  ![image](https://github.com/user-attachments/assets/67c0962a-d750-4e21-b9ff-01ee74ff6305)
+ ![image](https://github.com/user-attachments/assets/ac8cebc6-474f-4577-bea4-0940c8cebf3a)
+
+-**Company Transaction** - Shows transaction of products created by company
+![image](https://github.com/user-attachments/assets/095b4b89-83e9-4f3a-855d-1285de634fed)
+
+-**Finding Affiliates **- Finding affiliates using similarity score 
+![image](https://github.com/user-attachments/assets/332adad4-5b42-4078-a6d8-21e07c657c86)
 
 - **About Page** – Information about Affilify.
-    ![image](https://github.com/user-attachments/assets/b8112ebf-c7d7-452a-9e20-8c02fdf17ab5)
+   ![image](https://github.com/user-attachments/assets/c052478a-11fd-49c6-95f8-3a8dca5cb0b4)
+  ![image](https://github.com/user-attachments/assets/64d7fdde-d379-4699-986b-955aafb32d48)
+
 
 - **Clicking Links & Data on Blockchain** – Ensures tamper-proof sales tracking.
     ![image](https://github.com/user-attachments/assets/d39db05d-1f73-4404-894c-b33cd0c62e6c)
