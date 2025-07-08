@@ -16,7 +16,7 @@ export default function Analytics() {
   const [walletAffiliate, setWalletAffiliate] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [popupNotification, setPopupNotification] = useState(null);
-  // Retrieve walletAffiliate from localStorage
+  const [transactions, setTransactions] = useState([]);
   
   useEffect(() => {
     const fetchWalletAffiliate = () => {
@@ -27,6 +27,7 @@ export default function Analytics() {
         if (storedWallet) {
           setWalletAffiliate(storedWallet);
           fetchNotifications(storedWallet);
+          fetchTransactions(storedWallet);
         }
       }
     };
@@ -38,6 +39,20 @@ export default function Analytics() {
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 
+  const fetchTransactions = async (affiliateAddress) => {
+    if (!affiliateAddress) return;
+    
+    try {
+      const response = await fetch(`http://localhost:8080/api/transact/affiliate/${affiliateAddress}`);
+      if (!response.ok) throw new Error('Failed to fetch transactions');
+      
+      const data = await response.json();
+      console.log("Fetched transactions:", data);
+      setTransactions(data);
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    }
+  };
 
   const fetchNotifications = async (affiliateAddress) => {
     try {
@@ -160,6 +175,12 @@ export default function Analytics() {
     router.push('/');
   };
 
+  // Format wallet address for display
+  const formatAddress = (address) => {
+    if (!address) return '';
+    return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+  };
+
   return (
     <div className={styles.analyticsPage}>
       <nav className={styles.navbar}>
@@ -180,8 +201,9 @@ export default function Analytics() {
         </ul>
         <button className={styles.signOutBtn} onClick={handleLogout}>Sign Out</button>
       </nav>
-            {/* Notification Popup */}
-            {popupNotification && (
+      
+      {/* Notification Popup */}
+      {popupNotification && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
             <h3>{popupNotification.company}</h3>
@@ -190,17 +212,53 @@ export default function Analytics() {
           </div>
         </div>
       )}
-      <br></br>
-      &nbsp; &nbsp;<h1>Analytics Dashboard</h1>
-      <div className={styles.chartContainer}>
-        {products.length > 0 ? (
-          <>
-            <div className={styles.chart}><Bar data={barChartData} /></div>
-            <div className={styles.chart}><Pie data={pieChartData} /></div>
-          </>
-        ) : (
-          <p>No data available.</p>
-        )}
+      
+      <div className={styles.content}>
+        <h1 className={styles.dashboardTitle}>Analytics Dashboard</h1>
+        
+        <div className={styles.chartContainer}>
+          {products.length > 0 ? (
+            <>
+              <div className={styles.chart}><Bar data={barChartData} /></div>
+              <div className={styles.chart}><Pie data={pieChartData} /></div>
+            </>
+          ) : (
+            <p>No chart data available.</p>
+          )}
+        </div>
+        
+        {/* Transaction History Section */}
+        <div className={styles.transactionSection}>
+          <h2 className={styles.sectionTitle}>Transaction History</h2>
+          {transactions.length > 0 ? (
+            <div className={styles.tableContainer}>
+              <table className={styles.transactionTable}>
+                <thead>
+                  <tr>
+                    <th>Product Name</th>
+                    <th>Price (ETH)</th>
+                    <th>Company</th>
+                    <th>Affiliate</th>
+                    <th>CID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {transactions.map((transaction, index) => (
+                    <tr key={index}>
+                      <td>{transaction.productName}</td>
+                      <td>{transaction.price}</td>
+                      <td title={transaction.companyAddress}>{formatAddress(transaction.companyAddress)}</td>
+                      <td title={transaction.affiliateAddress}>{formatAddress(transaction.affiliateAddress)}</td>
+                      <td title={transaction.cid}>{transaction.cid}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p>No transaction history available.</p>
+          )}
+        </div>
       </div>
     </div>
   );

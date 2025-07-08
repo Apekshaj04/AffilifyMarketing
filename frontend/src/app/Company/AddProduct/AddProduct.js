@@ -92,6 +92,7 @@ export default function AddProduct() {
           <li><Link href="/Company">Home</Link></li>
           <li><Link href="/Company/AddProduct">Add Product</Link></li>
           <li><Link href="/Company/PreviousProduct">Previous Products</Link></li>
+          <li><Link href="/Company/FindAffiliate">Find Affiliates</Link></li>
           <li><Link href="/Company/About">About</Link></li>
         </ul>
         <button className={styles.signOutBtn} onClick={handleLogout}>Sign Out</button>

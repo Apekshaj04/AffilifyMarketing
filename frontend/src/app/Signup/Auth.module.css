@@ -1,149 +1,332 @@
-.header{
-    color: #28a745;
-    font-family: cursive;
-    font-size: xx-large;
-}
+/* Auth.module.css */
+
 .container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    background: url('/background.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;  
-  }
-  
-  .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.formBox {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.formBox h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.toggleButtons {
+  display: flex;
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 2rem;
+  border: 1px solid #e2e8f0;
+}
+
+.toggleButtons button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  color: #64748b;
+  position: relative;
+  overflow: hidden;
+}
+
+.toggleButtons button:hover {
+  color: #475569;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.activeButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.walletButton {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(238, 90, 36, 0.3);
+}
+
+.walletButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(238, 90, 36, 0.4);
+}
+
+.walletButton:disabled {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  cursor: not-allowed;
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+.walletButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.walletButton:hover::before {
+  left: 100%;
+}
+
+.metamaskRequired {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.metamaskRequired::before {
+  content: '⚠️';
+  font-size: 1rem;
+}
+
+.inputField {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.8);
+  color: #2d3748;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
+  transform: translateY(-1px);
+}
+
+.inputField::placeholder {
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+.submitButton:disabled {
+  background: linear-gradient(135deg, #a0aec0 0%, #718096 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submitButton:hover::before {
+  left: 100%;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+  background: #fed7d7;
+  border: 1px solid #feb2b2;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.errorText::before {
+  content: '❌';
+  font-size: 1rem;
+}
+
+.toggleText {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.toggleLink {
+  color: #667eea;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.toggleLink:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
   }
   
   .formBox {
-    position: relative;
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
   }
   
-  /* ✅ Prefix global selectors with a local class */
-  .formBox h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .toggleButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  .header {
+    font-size: 2rem;
   }
   
   .toggleButtons button {
-    flex: 1;
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+    padding: 10px 16px;
+    font-size: 0.875rem;
   }
   
-  .activeButton {
-    background: #007bff;
-    color: white;
-  }
-  
-  .walletButton {
-    width: 100%;
-    padding: 10px;
-    background: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 1rem;
+  .walletButton,
+  .submitButton {
+    padding: 14px 18px;
+    font-size: 0.95rem;
   }
   
   .inputField {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formBox {
+    padding: 1.5rem 1rem;
+    margin: 0.5rem;
   }
   
-  /* ✅ Fixed: Scoped the button properly */
-  .submitButton {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+  .header {
+    font-size: 1.75rem;
   }
   
-  /* ✅ Fix: Scoped toggleText properly */
-  .toggleText {
-    margin-top: 1rem;
-    font-size: 0.9rem;
+  .formBox h3 {
+    font-size: 1.1rem;
   }
-  
-  .toggleText span {
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .formBox {
-      width: 90%;
-      padding: 1.5rem;
-    }
-  
-    .toggleButtons button {
-      padding: 8px;
-    }
-  
-    .inputField,
-    .walletButton,
-    .submitButton {
-      padding: 8px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .formBox {
-      width: 100%;
-      padding: 1rem;
-    }
-  
-    /* ✅ Fix: Scoped h2 properly */
-    .formBox h2 {
-      font-size: 1.2rem;
-    }
-  
-    .toggleButtons {
-      flex-direction: column;
-    }
-  
-    .toggleButtons button {
-      margin: 3px 0;
-    }
-  
-    .inputField,
-    .walletButton,
-    .submitButton {
-      font-size: 0.9rem;
-      padding: 6px;
-    }
-  
-    .toggleText {
-      font-size: 0.8rem;
-    }
-  }
-  
+}

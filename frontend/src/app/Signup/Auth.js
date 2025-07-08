@@ -53,15 +53,17 @@ export default function Auth() {
       alert(response.data.message);
 
       if (isLogin) {
-        // Store user type & wallet in localStorage after successful login
-        localStorage.setItem('userType', userType);
-        if(userType==='affiliate'){
-          localStorage.setItem('walletAffiliate',walletAddress);
-        }
-        else{
-          localStorage.setItem('walletCompany',walletAddress);
-        }
-        localStorage.setItem('wallet', walletAddress);
+        // Store user type & wallet after successful login
+        const userData = {
+          userType,
+          walletAddress,
+          [`wallet${userType.charAt(0).toUpperCase() + userType.slice(1)}`]: walletAddress
+        };
+        
+        Object.entries(userData).forEach(([key, value]) => {
+          sessionStorage.setItem(key, value);
+        });
+        
         router.push(userType === 'affiliate' ? '/Affiliate' : '/Company');
       }
     } catch (error) {
@@ -77,6 +79,11 @@ export default function Auth() {
       <div className={styles.formBox}>
         <h1 className={styles.header}>Affilify</h1>
         <h3>{isLogin ? 'Login as' : 'Register as'} {userType === 'affiliate' ? 'Affiliate' : 'Company'}</h3>
+
+        {/* MetaMask Requirement Notice */}
+        <div className={styles.metamaskRequired}>
+          MetaMask wallet is required to access this platform
+        </div>
 
         {/* User Type Toggle */}
         <div className={styles.toggleButtons}>

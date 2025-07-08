@@ -29,6 +29,10 @@ const User = () => {
   const [cid, setCID] = useState("");
   const [account, setAccount] = useState(null);
   const [web3, setWeb3] = useState(null);
+  const [links, setLinks] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productData, setProductData] = useState(null);
+  const [walletData, setWalletData] = useState(null);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -66,23 +70,51 @@ const User = () => {
         `http://localhost:8080/api/affiliate/getWalletByLink?affiliateLink=${inputValue}`
       );
 
-      if (!walletRes.ok) throw new Error("Wallet address not found.");
-      const walletData = await walletRes.json();
-      const wallet = walletData.walletAddress?.trim().toLowerCase();
+      if (!walletRes.ok) throw new Error("Wallet address not found for this affiliate link.");
+      console.log("WALLET LINK RECIEVED")
+      const walletDataResponse = await walletRes.json();
+      if (!walletDataResponse.walletAddress) {
+        throw new Error("Invalid wallet data received from server");
+      }
+      
+      const wallet = walletDataResponse.walletAddress.trim().toLowerCase();
+      setWalletData(walletDataResponse);
       setWalletAddress(wallet);
+      setLinks(walletDataResponse.link);
 
-      if (wallet === account) {
+      if (wallet === account.toLowerCase()) {
         throw new Error("You cannot click your own affiliate link.");
       }
 
+      // Get product info to get the productId
+      console.log("Fetching product information...");
+      console.log(inputValue)
+      const productRes = await fetch(`http://localhost:8080/api/affiliate/product-by-link?link=${inputValue}`);
+        console.log("productRes recieved")
+      if (!productRes.ok) {
+        throw new Error("Product not found for this affiliate link.");
+      }
+      
+      const productDataResponse = await productRes.json();
+      console.log("Product data:", productDataResponse);
+      
+      if (!productDataResponse.product || !productDataResponse.product._id) {
+        throw new Error("Invalid product data received from server");
+      }
+      
+      setProductData(productDataResponse);
+      const productId = productDataResponse.product._id;
+      console.log("Product ID:", productId);
+      
+      setProductName(productDataResponse.product.name || "Unknown Product");
+
       console.log("Tracking click...");
-      const countRes = await fetch("http://localhost:8080/api/affiliate/trackClick", {
+      const countRes = await fetch(`http://localhost:8080/api/affiliate/incrementCount`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          walletAddress: wallet,
-          affiliateLink: inputValue,
-          senderWalletAddress: account,
+          affiliateAddress: wallet, 
+          productId: productId
         }),
       });
 
@@ -94,33 +126,38 @@ const User = () => {
       const countData = await countRes.json();
       setProductCount(countData.affiliateClicks);
       setCompany(countData.company || "Unknown Company");
-      setSuccessMessage(countData.successMessage);
+      setSuccessMessage(countData.successMessage || "Click tracked successfully");
 
       console.log("Uploading data to Lighthouse...");
-      const apiKey = "b08bf0e8.fc223d7999874dae973c3e43028d9a21"; 
+      const apiKey = process.env.NEXT_PUBLIC_LIGHTHOUSE_API_KEY;
+
 
       const affiliateData = JSON.stringify({
         affiliateLink: inputValue,
         affiliateWallet: wallet,
         senderWallet: account,
         productClicks: countData.affiliateClicks,
-        productId: countData.productId, 
+        productId: productId, 
         company: countData.company,
+        timestamp: new Date().toISOString()
       });
 
       const blob = new Blob([affiliateData], { type: "application/json" });
       const file = new File([blob], "affiliate_data.json");
-
+      console.log(blob)
       const response = await lighthouse.upload([file], apiKey);
       console.log("Lighthouse Upload Response:", response);
 
-      if (response.data.Hash) {
+      if (response.data && response.data.Hash) {
         setCID(response.data.Hash);
         setSuccessMessage(`Data stored on IPFS: ${response.data.Hash}`);
 
         await sendTFIL(account, wallet, response.data.Hash);
+      } else {
+        throw new Error("Failed to upload data to IPFS");
       }
     } catch (err) {
+      console.error("Error in handleSubmit:", err);
       setError(err.message);
       setProductCount(null);
       setSuccessMessage("");
@@ -132,31 +169,92 @@ const User = () => {
   const sendTFIL = async (fromAddress, toAddress, ipfsCID) => {
     try {
       console.log("Initiating Token Transfer...");
-
+      console.log("From:", fromAddress);
+      console.log("To:", toAddress);
+  
       if (!web3) throw new Error("Web3 not initialized. Ensure MetaMask is connected.");
-
+  
       const contract = new web3.eth.Contract(TFIL_ABI, TFIL_CONTRACT_ADDRESS);
       const amountToSend = web3.utils.toWei("0.05", "ether");
-
+      const amountInEther = web3.utils.fromWei(amountToSend, "ether");
+  
+      console.log("Sending amount:", amountInEther, "ETH");
+      
       const tx = await contract.methods.transferNative(toAddress, amountToSend).send({
         from: fromAddress,
         value: amountToSend,
       });
-
+  
       console.log("Transaction Sent! Hash:", tx.transactionHash);
       setSuccessMessage(`Transaction Successful! Hash: ${tx.transactionHash}`);
-
+  
       if (ipfsCID) {
         console.log("Sending Notification...");
         await sendNotification(toAddress, ipfsCID);
       }
+      
+      const companyId = productData.product.Company;
+      console.log("Company ID:", companyId);
+  
+      console.log("Fetching company wallet address...");
+      const companyWallet = await fetch(`http://localhost:8080/api/company/wallet/${companyId}`);
+      console.log("Companywallet",companyWallet);
+      if (!companyWallet.ok) {
+        throw new Error(`Failed to fetch company wallet: ${companyWallet.status}`);
+      }
+      
+      const companyData = await companyWallet.json();
+      
+      if (!companyData || !companyData.walletAddress) {
+        throw new Error("Invalid company wallet data received");
+      }
+      
+      console.log("Company Wallet Address:", companyData.walletAddress);
+      
+      // Explicitly convert and check the price
+      const priceValue = parseFloat(amountInEther);
+      console.log("Price for transaction record:", priceValue);
+      
+      if (isNaN(priceValue)) {
+        console.warn("Price is NaN, using default 0.05");
+      }
+      console.log("Company walletAdress",companyData.walletAddress)
+      console.log(productName)
+      console.log(toAddress)
+      console.log(cid)
+      console.log("Recording transaction...");
+      const response = await fetch("http://localhost:8080/api/transact/createTransaction", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          affiliateAddress: toAddress,
+          companyAddress:company.walletAddress,
+          productName: productName,
+          price: isNaN(priceValue) ? 0.05 : priceValue, 
+          cid: cid
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Transaction recording failed: ${errorData.message || response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log("Transaction recording response:", data);
+      setSuccessMessage(`Transaction completed and recorded. Hash: ${tx.transactionHash}`);
+  
     } catch (err) {
       console.error("Transaction Failed:", err);
+      setError(`Transaction Failed: ${err.message}`);
     }
   };
-
+  
   const sendNotification = async (toAddress, ipfsCID) => {
     try {
+      console.log("Sending notification to:", toAddress);
       const notificationRes = await fetch("http://localhost:8080/api/notification/addNotification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -169,12 +267,15 @@ const User = () => {
       });
 
       if (!notificationRes.ok) {
-        throw new Error("Failed to send notification.");
+        const errorData = await notificationRes.json();
+        throw new Error(`Notification failed: ${errorData.message || notificationRes.statusText}`);
       }
 
       console.log("Notification sent successfully.");
     } catch (error) {
       console.error("Error sending notification:", error);
+      // We don't want to fail the whole process if notification fails
+      // Just log the error
     }
   };
 
@@ -208,7 +309,16 @@ const User = () => {
 
       {error && <p className={styles.error}>{error}</p>}
       {successMessage && <p className={styles.success}>{successMessage}</p>}
-   
+      
+      {cid && (
+        <div className={styles.resultSection}>
+          <h3>Transaction Details</h3>
+          <p>IPFS CID: <a href={`https://gateway.lighthouse.storage/ipfs/${cid}`} target="_blank" rel="noopener noreferrer">{cid}</a></p>
+          {productCount && <p>Total Clicks: {productCount}</p>}
+          {walletAddress && <p>Affiliate Wallet: {walletAddress}</p>}
+          {productName && <p>Product: {productName}</p>}
+        </div>
+      )}
     </div>
   );
 };
