@@ -183,7 +183,16 @@ Affilify consists of **two portals**:
   ![image](https://github.com/user-attachments/assets/113f2448-dd44-486f-b679-976a34dc23a3)
 
   
+AWS SS :
+![WhatsApp Image 2025-11-08 at 19 11 56_75597947](https://github.com/user-attachments/assets/4fb693b7-93f2-45fa-b769-9c5182027880)
 
+![WhatsApp Image 2025-11-08 at 19 12 45_799482d2](https://github.com/user-attachments/assets/e1ae2987-297c-490a-b362-f5505201c7b4)
+
+![WhatsApp Image 2025-11-08 at 19 17 34_19bc69be](https://github.com/user-attachments/assets/853dc4cd-92ed-4f45-8ff4-985937bf0b74)
+
+![WhatsApp Image 2025-11-09 at 00 27 03_dc566834](https://github.com/user-attachments/assets/1e3639df-38ba-4869-9ea5-a5e132229dca)
+
+![WhatsApp Image 2025-11-09 at 00 29 45_6065ad35](https://github.com/user-attachments/assets/adc509f5-cf87-40cb-8220-8a34c571bc05)
 
 
 ---
